@@ -28,9 +28,9 @@ long dur_on = 0;
 //String story3[30] = {"A Light Read...","    ",  "Into", "how", "small", "a", "place", "the", "word", "judgement", "can", "be", "compressed: ", "it", "must", "fit", "inside", "the", "brain", "of", "a", "ladybug", "as", "she", 
 //                  "before", "my", "eyes", "makes", "a", "decision"}; 
 
-String story[10] = {"a light read", "CYCC","www.alightread.wordpress.com", "So", "what", "am", "I", "now", "sliced", "bread?"}; 
-String story2[16] = {"a light read", "CYCC","www.alightread.wordpress.com", "next", "time",  "I", "go", "to", "the", "grocery", "store,", "remind", "me", "to", "buy", "eggs."}; 
-String story3[13] = {"a light read", "CYCC","www.alightread.wordpress.com","people", "are", "losing", "their", "lives", "because", "of", "taking", "dangerous", "selfies"}; 
+String story[10] = {"a light read", "alightread.wordpress.com","- - - - - - - - - - - - - - - -", "So", "what", "am", "I", "now", "sliced", "bread?"}; 
+String story2[16] = {"a light read","alightread.wordpress.com",  "- - - - - - - - - - - - - - -", "next", "time",  "I", "go", "to", "the", "grocery", "store,", "remind", "me", "to", "buy", "eggs."}; 
+String story3[13] = {"a light read", "alightread.wordpress.com", "- - - - - - - - - - - - - - -","people", "are", "losing", "their", "lives", "because", "of", "taking", "dangerous", "selfies"}; 
 
 void setup() {
   pinMode(7, OUTPUT); digitalWrite(7, LOW);
@@ -59,24 +59,27 @@ void setup() {
 void loop() {
 //  Serial.println(buttonState); 
   buttonState = digitalRead(buttonPin);
+  printer.upsideDownOn(); 
   if (buttonState == LOW){
     digitalWrite(outputPin, HIGH);
   }else{
     digitalWrite(outputPin, LOW);
   }
-  if(charInt <= 3){
+  if(charInt < 3){
+
     printer.justify('C'); 
   }else{
-    printer.justify('R'); 
+    printer.justify('L'); 
   }
 
   if(charInt == 0){
     printer.setSize('L');  
+    
   }else{
     printer.setSize('S'); 
   }
+
   
-  printer.upsideDownOn(); 
   switch(storyInt){
     case 0:
       if(charInt <= 3){
